@@ -7,6 +7,9 @@ import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Signup from "./screens/Signup";
 import { HelmetProvider } from "react-helmet-async";
+import AddShop from "./screens/AddShop";
+import Shop from "./screens/Shop";
+import ThemeButton from "./components/ThemeButton";
 
 const App = () => {
   const isDarkMode = useReactiveVar(isDarkModeVar);
@@ -15,6 +18,7 @@ const App = () => {
     <HelmetProvider>
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
         <GlobalStyles />
+        <ThemeButton />
         <Router>
           <Switch>
             <Route exact path='/' component={Home} />
@@ -23,6 +27,12 @@ const App = () => {
             </Route>
             <Route path='/signup'>
               {isLoggedIn ? <Redirect to='/' /> : <Signup />}
+            </Route>
+            <Route path='/add'>
+              {isLoggedIn ? <AddShop /> : <Login />}
+            </Route>
+            <Route path='/shop/:id'>
+              <Shop />
             </Route>
           </Switch>
         </Router>

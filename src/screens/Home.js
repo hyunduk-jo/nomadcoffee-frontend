@@ -1,11 +1,12 @@
-import { useReactiveVar } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { gql, useQuery } from '@apollo/client';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { isLoggedInVar, logUserOut } from '../apollo/reactiveVariables';
 import HelmetTitle from '../components/HelmetTitle';
+import Pagination from '../components/Pagination';
+import ShopCard from '../components/ShopCard';
 
 const Container = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,21 +14,32 @@ const Container = styled.div`
   background-color: ${props => props.theme.warmPinkColor};
 `;
 
-const TestSpan = styled.span`
-  font-size: 4rem;
-  font-weight: 600;
-  margin-bottom: 20px;
+const SEE_SHOPS = gql`
+  query seeCoffeeShops($page: Int!){
+    seeCoffeeShops(page: $page){
+      id,
+      name,
+      latitude,
+      longitude,
+      photos {
+        url
+      },
+      totalShopNum,
+      isMyShop
+    }
+  }
 `;
 
 const Home = () => {
-  const isLoggedIn = useReactiveVar(isLoggedInVar);
+  const [page, setPage] = useState(1);
+  const { data } = useQuery(SEE_SHOPS, { variables: { page } });
+  console.log(data)
   return (
     <>
       <HelmetTitle title="Home" />
       <Container>
-        <TestSpan>Home Page</TestSpan>
-        <TestSpan>Am I Logged In ? {isLoggedIn ? "Yes" : "No"}</TestSpan>
-        {isLoggedIn ? <button onClick={logUserOut}>Logout</button> : <button><Link to='/login'>Login</Link></button>}
+        {data?.seeCoffeeShops?.map(shop => <ShopCard key={shop.id} shop={shop} />)}
+        <Pagination page={page} setPage={setPage} maxPageNum={Math.ceil(data?.seeCoffeeShops[0]?.totalShopNum / 2)} />
       </Container>
     </>
   )
