@@ -3,17 +3,16 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { Button, Form, FormError, Input } from '../components/AuthFormStyle';
 import { CoffeeIcon } from '../components/Icons';
-import ThemeButton from '../components/ThemeButton';
 import { gql, useMutation } from '@apollo/client';
 import HelmetTitle from '../components/HelmetTitle';
 
 const Container = styled.div`
-  height: 100vh;
+  min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.dustPinkColor};
+  background-color: ${props => props.theme.warmPinkColor};
 `;
 
 const SignupContainer = styled.div`
@@ -25,6 +24,7 @@ const SignupContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
+  padding: 10px 0px;
 `;
 
 const Logo = styled.span`
@@ -92,7 +92,6 @@ const Signup = () => {
   return (
     <>
       <HelmetTitle title="Signup" />
-      <ThemeButton />
       <Container>
         <SignupContainer>
           <Logo><CoffeeIcon size="54" /> Nomad Coffee</Logo>

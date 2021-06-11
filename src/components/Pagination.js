@@ -4,12 +4,10 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   button {
-    width: 35px;
-    height: 35px;
+    width: 22px;
+    height: 22px;
     cursor: pointer;
-    font-size: 18px;
   }
-  margin:20px 0px;
 `;
 
 const ArrowBtn = styled.button`

@@ -6,12 +6,16 @@ import Pagination from '../components/Pagination';
 import ShopCard from '../components/ShopCard';
 
 const Container = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: ${props => props.theme.warmPinkColor};
+`;
+
+const ShopCardContainer = styled.div`
+  display: flex;
 `;
 
 const SEE_SHOPS = gql`
@@ -25,7 +29,12 @@ const SEE_SHOPS = gql`
         url
       },
       totalShopNum,
-      isMyShop
+      isMyShop,
+      user {
+        id,
+        username,
+        avatarUrl
+      }
     }
   }
 `;
@@ -38,7 +47,9 @@ const Home = () => {
     <>
       <HelmetTitle title="Home" />
       <Container>
-        {data?.seeCoffeeShops?.map(shop => <ShopCard key={shop.id} shop={shop} />)}
+        <ShopCardContainer>
+          {data?.seeCoffeeShops?.map(shop => <ShopCard key={shop.id} shop={shop} />)}
+        </ShopCardContainer>
         <Pagination page={page} setPage={setPage} maxPageNum={Math.ceil(data?.seeCoffeeShops[0]?.totalShopNum / 2)} />
       </Container>
     </>

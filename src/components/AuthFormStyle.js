@@ -9,7 +9,7 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  height: 50px;
+  height: 40px;
   border-radius: 25px;
   width: 45%;
   margin: 20px 0px;
@@ -22,7 +22,7 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  height: 50px;
+  height: 40px;
   width: 45%;
   font-size: 25px;
   font-weight: 600;

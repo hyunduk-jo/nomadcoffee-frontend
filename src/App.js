@@ -9,7 +9,8 @@ import Signup from "./screens/Signup";
 import { HelmetProvider } from "react-helmet-async";
 import AddShop from "./screens/AddShop";
 import Shop from "./screens/Shop";
-import ThemeButton from "./components/ThemeButton";
+import Header from "./components/Header";
+import SearchResult from "./screens/SearchResult";
 
 const App = () => {
   const isDarkMode = useReactiveVar(isDarkModeVar);
@@ -18,8 +19,8 @@ const App = () => {
     <HelmetProvider>
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
         <GlobalStyles />
-        <ThemeButton />
         <Router>
+          <Header />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/login'>
@@ -33,6 +34,9 @@ const App = () => {
             </Route>
             <Route path='/shop/:id'>
               <Shop />
+            </Route>
+            <Route path='/search'>
+              <SearchResult />
             </Route>
           </Switch>
         </Router>

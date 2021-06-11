@@ -18,8 +18,7 @@ const SThemeButton = styled.div`
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 30px;
-  right: 30px;
+  right: 5px;
   cursor: pointer;
 `;
 

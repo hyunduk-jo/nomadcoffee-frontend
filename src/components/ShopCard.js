@@ -4,6 +4,9 @@ import styled from "styled-components";
 const Container = styled.div`
   cursor: pointer;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Photo = styled.img`
@@ -11,6 +14,12 @@ const Photo = styled.img`
   height: 400px;
   object-fit: contain;
   background-color: black;
+  margin: 10px;
+`;
+
+const ShopName = styled.span`
+  font-size: 20px;
+  font-weight: 600;
 `;
 
 const ShopCard = ({ shop }) => {
@@ -22,7 +31,7 @@ const ShopCard = ({ shop }) => {
   return (
     <Container onClick={onClick}>
       <Photo src={shop.photos[0].url} alt="" />
-      <h1>{shop.name}</h1>
+      <ShopName>{shop.name}</ShopName>
     </Container>
   )
 }

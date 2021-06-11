@@ -7,15 +7,14 @@ import { logUserIn } from '../apollo/reactiveVariables';
 import { Button, Form, FormError, Input } from '../components/AuthFormStyle';
 import HelmetTitle from '../components/HelmetTitle';
 import { CoffeeIcon } from '../components/Icons';
-import ThemeButton from '../components/ThemeButton';
 
 const Container = styled.div`
-  height: 100vh;
+  min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.dustPinkColor};
+  background-color: ${props => props.theme.warmPinkColor};
 `;
 
 const LoginContainer = styled.div`
@@ -28,6 +27,7 @@ const LoginContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
+  padding: 10px 0px;
 `;
 
 const Logo = styled.span`
@@ -104,7 +104,6 @@ const Login = () => {
   return (
     <>
       <HelmetTitle title="Login" />
-      <ThemeButton />
       <Container>
         <LoginContainer>
           <Logo><CoffeeIcon size="54" /> Nomad Coffee</Logo>
